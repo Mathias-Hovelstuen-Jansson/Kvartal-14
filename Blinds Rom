@@ -1,0 +1,144 @@
+'
+'
+' solavskjerming setup generisk
+' Mathias Hovelstuen Jansson (mathiashjan@gmail.com)
+' 23.09.2024
+' Bravida.no
+'
+'
+
+'--------------------------------------------------------------------------------------------------
+'Datoer og internvariabler
+Numeric OvrSts, LklSts
+Datetime VindFirstClc														' First Cycle til vind over grensesnitt
+Datetime VindLimTim															' Verdi som blir sammenliknet med VindFirstClc
+
+'--------------------------------------------------------------------------------------------------
+'Digitale innganger
+
+Numeric input RomUokku													 ' Signal om att rommet er uokkupert
+Numeric triggered input AutoBlind								' Signal fra overordnet system om blind skal være
+Numeric triggered input OccyDec									' Bevegelse i rommet
+Numeric triggered input KveldsTid								' Status på om programmet skal skjøre i kveldsmodus
+Numeric Input Brannalarm				 								' True eller False verdi om brannalarmen er utløst eller ikke
+
+'--------------------------------------------------------------------------------------------------
+'Analoge innganger
+
+Numeric input TempKontor												 ' Temperatur på kontoret
+Numeric input TempUte														' Temperatur ute verdi
+Numeric input TempKontorStpt										 ' Setpunkt til kontoret sin temperatur
+Numeric input VindFart													 ' Verdi av vindfarten ute gitt i m/s
+Numeric input TempKontorGrense									 ' Grense verdi til temperatur på kontoret
+Numeric input VindFartGrense								   	' Grense verdi til vind farten ute
+Numeric Input Blinds_Pos												 ' Beskjed fra tablå hvor blindsene er 
+'--------------------------------------------------------------------------------------------------
+'Digitale utganger
+
+
+Numeric output DriftAuto												 ' Blinds konor status kjører fra overordnet system
+Numeric output DriftManu												 ' Blinds konor status kjører lokalt
+Numeric Output AlmVind													 ' Alarmsignal om vindhastighet over grensesnitt i over 1t
+
+'--------------------------------------------------------------------------------------------------
+'Analoge og dato utganger
+
+Numeric Output BlindsKontor											' Utgang som kjører blindsene opp eller ned fra 0-100 (0 = Lukket - 100 = Åpent)
+Numeric Output BlindKontorLvl										' Signal 0-100 som blir vist visuelt
+Datetime Output LastRunDateTime									' Debug helper, indikasjon fra når scriptet ble sist kjørt
+
+
+'--------------------------------------------------------------------------------------------------
+'String utganger
+String  Output  LastCaseCMD                      ' Debug helper, indikasjon av siste BlindCmd 
+String  Output  LastCaseSts                      ' Debug helper, indikasjon av siste Status (Manuel auto) 
+
+'--------------------------------------------------------------------------------------------------
+' Indikasjon fra siste script cycle
+
+LastRunDateTime = Date
+
+
+'--------------------------------------------------------------------------------------------------
+' Betingele for å kjøre program i manuell mode, hvis ikke så kjører den i auto
+
+if LastCaseSts = "Auto Mode" And AutoBlind = 1 and Blinds_Pos < 1 or LastCaseSts = "Auto Mode" And AutoBlind = 0 and Blinds_Pos > 50 Then
+	LastCaseSts = "Manu Mode"
+	Set DriftManu = 1
+	set DriftAuto = 0
+Else
+	Set DriftAuto = 1	
+Endif
+
+'--------------------------------------------------------------------------------------------------
+' Styring av blinds fra overordnet nivå
+
+If DriftAuto = 1 and Brannalarm = False and AlmVind = False Then
+	LastCaseSts = "Auto Mode"
+	if DriftAuto = 1 and DriftManu = 0 Then
+		If AutoBlind = 100 Or OccyDec = 0 And AutoBlind = 0 and TempKontor <= TempKontorGrense Then
+			Set BlindsKontor = 100
+			LastCaseCMD = "Blinds_Åpner"
+			Endif
+		If AutoBlind = 0 and TempKontor > TempKontorGrense	Then
+			Set BlindsKontor = 0
+			LastCaseCMD = "Blinds_Lukker"
+		Endif
+	Endif
+Endif
+'--------------------------------------------------------------------------------------------------
+' Styring av blinds lokalt
+
+
+While DriftManu = 1 And Brannalarm = False and AlmVind = False
+	if Blinds_Pos >= 50 Then
+		BlindsKontor = 100
+ 	 BlindKontorLvl = 100
+		LastCaseCMD = "Blinds_Åpner"
+	Else
+		BlindsKontor = 0
+	  BlindKontorLvl = 0
+		LastCaseCMD = "Blinds_Lukker"
+	Endif
+
+	If KveldsTid = True Then
+	  Set BlindKontorLvl = 0
+		Set DriftAuto = 1
+		Set BlindsKontor = 0
+		Set DriftManu = 0
+	Endif
+EndWhile
+'--------------------------------------------------------------------------------------------------
+' Styring av blinds under brannalarm
+
+If Brannalarm = True Then 
+	Set DriftManu = 0
+	Set DriftAuto = 0
+	Set BlindsKontor = 0
+	LastCaseCMD = "Brannalarm Blinds Lukker"
+	LastCaseSts = "Brannalarm Blinds Lukker"
+Endif
+
+'--------------------------------------------------------------------------------------------------
+' Styring av blinds når det blåser over grensesnitt
+
+VindFirstClc = Date
+
+If VindFartGrense <= VindFart Then 
+	VindLimTim = Date 
+Else
+	set VindLimTim = 0
+endif
+	
+if DiffTime (Hour, VindFirstClc, VindLimTim) >= 1 Then
+	Set AlmVind = True
+	Set DriftManu = 0
+	Set DriftAuto = 0
+	Set BlindsKontor = 0
+	LastCaseCMD = "Vind ute for sterk"
+	LastCaseSts = "Vind grense oversteget"
+Endif
+
+
+
+
