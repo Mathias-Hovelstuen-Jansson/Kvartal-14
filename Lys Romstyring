@@ -1,0 +1,113 @@
+'
+'
+' Lys setup romstyring generisk
+' Mathias Hovelstuen Jansson (mathiashjan@gmail.com)
+' +47 901 71 698
+' Bravida.no
+'
+
+'--------------------------------------------------------------------------------------------------
+'Datoer og internvariabler
+
+Datetime OccyCmp1, OccyCmp2											' Difftid Tids variabler
+Numeric TSon																		 ' Hjelpeverdi for DiffTid
+
+'--------------------------------------------------------------------------------------------------
+'Digitale innganger
+
+Numeric triggered input KveldsTid								' Status på om programmet skal skjøre i kveldsmodus
+Numeric triggered input OccyDec									' Bevegelse i rommet
+'--------------------------------------------------------------------------------------------------
+'Analoge innganger
+
+Numeric triggered input MinOccyRst							 ' Minutter uten bevegelse før lys skal skrus av
+Numeric triggered Input SelScn        			     ' selected Scene
+Numeric triggered Input Lt01_Lvl    		      	 ' Manual lys status 2 step fra tablå
+
+'--------------------------------------------------------------------------------------------------
+'Digitale utganger
+
+Numeric Output Lt01_CmdOut                		   ' Lys pådrag verdi
+Numeric Output LtManMod 									 	    ' Operation mode	(when LtManuMod = 1 manuell mode, when LtAutMod = 1 Auto mode på... Manu > Auto)
+Numeric Output LtAutMod 									 	    ' Operation mode	(when LtManuMod = 1 manuell mode, when LtAutMod = 1 Auto mode på... Manu > Auto)
+'--------------------------------------------------------------------------------------------------
+'Analoge og dato utganger
+
+Numeric Output Light1Level                		   ' Lys pådrag verdi visuelt 0-100%
+Datetime Output LastRunDateTime                  ' Debug helper, indikasjon fra når scriptet ble sist kjørt
+'--------------------------------------------------------------------------------------------------
+'String utganger
+String  Output  LastCaseCMD                      ' Debug helper, indikasjon av siste Lt01_Cmd 
+
+'--------------------------------------------------------------------------------------------------
+LastRunDateTime = Date ' Indikasjon fra siste script cycle
+
+'--------------------------------------------------------------------------------------------------
+'Skifter over til Manuell mode når den står i auto og sensoren ser og en endring i  Lt01_Lvl skjer
+
+
+if LastCaseCMD = "Automode_LysPå" And OccyDec = 1 and Lt01_Lvl < 1 Then
+	Set LtManMod = 1
+	set LtAutMod = 0
+Else
+	Set LtAutMod = 1	
+Endif
+'--------------------------------------------------------------------------------------------------
+'Funksjon på når lyset skal skru seg selv av igjen når den er i auto
+
+If OccyDec = 0 and TSon < 1 Then
+	OccyCmp1 = Date
+	set TSon = 0
+Endif
+OccyCmp2 = Date
+
+if DiffTime (Second, OccyCmp1, OccyCmp2) > MinOccyRst and OccyDec = 0 and LtManMod <> 1 Then
+	Set TSon = 0
+	While OccyDec = False
+		Set Lt01_CmdOut = False
+		LastCaseCMD = "DiffTime_LightOff"
+		LtAutMod = 1
+		Light1Level = 0
+		LtManMod = 0
+	EndWhile
+Endif
+
+'--------------------------------------------------------------------------------------------------
+' Uokkupert rom i auto for tids styring
+
+If LtAutMod = 1 and OccyDec = 0 and TSon < 1 Then
+ LastCaseCMD = "Automode_StartDiffTime"
+ Set TSon = 2
+Endif
+
+'--------------------------------------------------------------------------------------------------
+' Okkupert rom i auto strying 
+
+If LtAutMod = 1 and OccyDec = 1 Then
+ LastCaseCMD = "Automode_LysPå"
+ Set TSon = 2
+ Set Lt01_CmdOut = True
+ Set Light1Level = 100
+Endif
+
+'--------------------------------------------------------------------------------------------------
+'While loop for kjøring av lys i manuell mode fram til det blir kveldstid og alt blir resatt
+
+While LtManMod = 1
+	if Lt01_Lvl >= 50 Then
+		Lt01_CmdOut = True
+ 	 Light1Level = 100
+		LastCaseCMD = "Manuell_Pådrag_På"
+	Else
+		Lt01_CmdOut = False
+	  Light1Level = 0
+		LastCaseCMD = "Manuell_Pådrag_Av"
+	Endif
+
+	If KveldsTid = True Then
+	  Set Light1Level = 0
+		Set LtAutMod = 1
+		Set Lt01_CmdOut = False
+		Set LtManMod = 0
+	Endif
+EndWhile
