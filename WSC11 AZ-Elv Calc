@@ -1,0 +1,106 @@
+'
+'
+' Weatherstation AZ/ELV utregning
+' Mathias Hovelstuen Jansson (mathiashjan@gmail.com)
+' 06.08.2024
+' Bravida.no
+'
+'
+
+Numeric Input Sun_Pos_Az				'sensor som måler hvor solen er på ett 2d sirkulært plane
+Numeric Input Sun_Pos_Elv	 		'sensor som måler hvor solen er fra 0 til 180 grader med 90 så er solen direkte over
+Numeric Input AZ_Prcnt_Infl		 'analog verdi som blir satt av deg og jo nærmere 100 jo mindre påvirker det skarpheten på bilde
+Numeric Input BlindsAzInf			 'analo verdi som sier om hvor følsom blindsene skal være
+
+
+
+Numeric Output Sol_Elv					 'Utregning om hvor mye hensyn programmet skal ta til solen på Y-aksen
+Numeric Output Sol_NE						'Utregning om hvor mye influense solen har på North East siden
+Numeric Output Sol_SE						'Utregning om hvor mye influense solen har på South East siden
+Numeric Output Sol_SW						'Utregning om hvor mye influense solen har på South West siden
+Numeric Output Sol_NW						'Utregning om hvor mye influense solen har på North West siden
+Numeric Output LystNE						'Setter ned blindsene på North East siden av bygget
+Numeric Output LystNW						'Setter ned blindsene på North West siden av bygget
+Numeric Output LystSE						'Setter ned blindsene på South East siden av bygget
+Numeric Output LystSW						'Setter ned blindsene på South West siden av bygget
+
+
+if Sun_Pos_Elv > 110 Or Sun_Pos_Elv < 70 Then
+	set Sol_Elv = 0
+Else
+	set Sol_Elv = 0.2
+Endif
+
+' setter Sol_NE til en skalerende verdi fra 0 til 1 og når Sun_pos_az går over 45 så skal den skalere fra 1 til 0 før den går over til Sol_SE eller Sol_NW 
+
+if Sun_Pos_Az > 0 and Sun_Pos_Az < 45 Then
+	set Sol_NE = (((Sun_Pos_Az)/45)/AZ_Prcnt_Infl)
+Endif
+
+if Sun_Pos_Az > 45 and Sun_Pos_Az < 90 Then
+	set Sol_NE = 1-(((Sun_Pos_Az)/45)/AZ_Prcnt_Infl)
+Endif
+
+if Sun_Pos_Az > 90 Then
+	set Sol_NE = 0
+Endif
+
+
+If Sol_Ne >= BlindsAZinf Then	
+	Set LystNE = True
+Endif
+
+If Sol_NW >= BlindsAZinf Then	
+	Set LystNE = True
+Endif
+
+If Sol_Se >= BlindsAZinf Then	
+	Set LystNE = True
+Endif
+
+
+If Sol_SW >= BlindsAZinf Then	
+	Set LystNE = True
+Endif
+
+
+
+if Sun_Pos_Az > 90 and Sun_Pos_Az < 135 Then
+	set Sol_SE = (((Sun_Pos_Az)/135)/AZ_Prcnt_Infl)
+Endif
+
+if Sun_Pos_Az > 135 and Sun_Pos_Az < 180 Then
+	set Sol_SE = 1-(((Sun_Pos_Az)/135)/AZ_Prcnt_Infl)
+Endif
+
+if Sun_Pos_Az < 90 Or Sun_Pos_Az > 180 Then
+	set Sol_SE = 0
+Endif
+
+
+
+if Sun_Pos_Az > 180 and Sun_Pos_Az < 225 Then
+	set Sol_SW = (((Sun_Pos_Az)/225)/AZ_Prcnt_Infl)
+Endif
+
+if Sun_Pos_Az > 225 and Sun_Pos_Az < 270 Then
+	set Sol_SW = 1-(((Sun_Pos_Az)/225)/AZ_Prcnt_Infl)
+Endif
+
+if Sun_Pos_Az < 180 Or Sun_Pos_Az > 270 Then
+	set Sol_SW = 0
+Endif
+
+
+if Sun_Pos_Az > 270 and Sun_Pos_Az < 315 Then
+	set Sol_NW = (((Sun_Pos_Az)/315)/AZ_Prcnt_Infl)
+Endif
+if Sun_Pos_Az > 315 and Sun_Pos_Az < 360 Then
+	set Sol_NW = 1-(((Sun_Pos_Az)/315)/AZ_Prcnt_Infl)
+Endif
+if Sun_Pos_Az < 270 Or Sun_Pos_Az > 360 Then
+	set Sol_NW = 0
+Endif
+
+
+
