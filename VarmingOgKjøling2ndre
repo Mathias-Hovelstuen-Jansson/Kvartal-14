@@ -1,0 +1,349 @@
+'
+'
+' Lys setup uten solavskjerming romstyring generisk
+' Mathias Hovelstuen Jansson (mathiashjan@gmail.com)
+' 13.Numeric Input 09.Numeric Input Rom2Numeric Input 0Rom24
+' +47 9Numeric Input 01 71 698
+' Bravida.no
+'
+'--------------------------------------------------------------------------------------------------
+'Datoer og internvariabler
+Numeric KjolingSamlet, VarmingSamlet
+
+'--------------------------------------------------------------------------------------------------
+'Digitale innganger
+'Prioritet på rom (1: ved ingen prio, 0: ved ingen påvirkning, 2-X: manuell økt påvirkning)
+
+Numeric Input Rom001Prioritet
+Numeric Input Rom002Prioritet
+Numeric Input Rom003Prioritet
+Numeric Input Rom004Prioritet
+Numeric Input Rom005Prioritet
+Numeric Input Rom006Prioritet
+Numeric Input Rom007Prioritet
+Numeric Input Rom008Prioritet
+Numeric Input Rom009Prioritet
+Numeric Input Rom012Prioritet
+Numeric Input Rom013Prioritet
+Numeric Input Rom014Prioritet
+Numeric Input Rom015Prioritet
+Numeric Input Rom017Prioritet
+Numeric Input Rom018Prioritet
+Numeric Input Rom019Prioritet
+Numeric Input Rom022Prioritet
+Numeric Input Rom023Prioritet
+Numeric Input Rom024Prioritet
+Numeric Input Rom025Prioritet
+Numeric Input Rom026Prioritet
+Numeric Input Rom027Prioritet
+Numeric Input Rom028Prioritet
+Numeric Input Rom029Prioritet
+Numeric Input Rom030Prioritet
+Numeric Input Rom031Prioritet
+Numeric Input Rom032Prioritet
+Numeric Input Rom033Prioritet
+Numeric Input Rom035Prioritet
+Numeric Input Rom037Prioritet
+Numeric Input Rom038Prioritet
+Numeric Input Rom039Prioritet
+Numeric Input Rom040Prioritet
+Numeric Input Rom041Prioritet
+Numeric Input Rom042Prioritet
+Numeric Input Rom043Prioritet
+Numeric Input Rom044Prioritet
+Numeric Input Rom045Prioritet
+Numeric Input Rom047Prioritet
+Numeric Input Rom048Prioritet
+Numeric Input Rom049Prioritet
+Numeric Input Rom050Prioritet
+Numeric Input Rom051Prioritet
+Numeric Input Rom052Prioritet
+Numeric Input Rom053Prioritet
+Numeric Input Rom054Prioritet
+Numeric Input Rom055Prioritet
+Numeric Input Rom056Prioritet
+Numeric Input Rom057Prioritet
+Numeric Input Rom058Prioritet
+Numeric Input Rom059Prioritet
+Numeric Input Rom061Prioritet
+Numeric Input Rom062Prioritet
+Numeric Input Rom063Prioritet
+Numeric Input Rom064Prioritet
+Numeric Input Rom065Prioritet
+Numeric Input Rom066Prioritet
+Numeric Input Rom067Prioritet
+Numeric Input Rom068Prioritet
+Numeric Input Rom069Prioritet
+Numeric Input Rom070Prioritet
+Numeric Input Rom072Prioritet
+Numeric Input Rom073Prioritet
+Numeric Input Rom074Prioritet
+Numeric Input Rom076Prioritet
+Numeric Input Rom077Prioritet
+Numeric Input Rom078Prioritet
+Numeric Input Rom079Prioritet
+Numeric Input Rom081Prioritet
+Numeric Input Rom082Prioritet
+Numeric Input Rom083Prioritet
+Numeric Input Rom086Prioritet
+Numeric Input Rom087Prioritet
+Numeric Input Rom088Prioritet
+Numeric Input Rom089Prioritet
+Numeric Input Rom090Prioritet
+Numeric Input Rom091Prioritet
+Numeric Input Rom092Prioritet
+Numeric Input Rom405Prioritet
+Numeric Input Rom406Prioritet
+Numeric Input Rom407Prioritet
+Numeric Input Rom411Prioritet
+Numeric Input Rom416Prioritet
+Numeric Input Rom417Prioritet
+Numeric Input Rom421Prioritet
+Numeric Input Rom423Prioritet
+Numeric Input Rom434Prioritet
+
+'Alle innganger i 2. etasje som ønsker Kjøling ved 1 signal
+
+
+Numeric Input Rom001LC_Cmd
+Numeric Input Rom002LC_Cmd
+Numeric Input Rom003LC_Cmd
+Numeric Input Rom004LC_Cmd
+Numeric Input Rom005LC_Cmd
+Numeric Input Rom006LC_Cmd
+Numeric Input Rom007LC_Cmd
+Numeric Input Rom008LC_Cmd
+Numeric Input Rom009LC_Cmd
+Numeric Input Rom012LC_Cmd
+Numeric Input Rom013LC_Cmd
+Numeric Input Rom014LC_Cmd
+Numeric Input Rom015LC_Cmd
+Numeric Input Rom017LC_Cmd
+Numeric Input Rom018LC_Cmd
+Numeric Input Rom019LC_Cmd
+Numeric Input Rom022LC_Cmd
+Numeric Input Rom023LC_Cmd
+Numeric Input Rom024LC_Cmd
+Numeric Input Rom025LC_Cmd
+Numeric Input Rom026LC_Cmd
+Numeric Input Rom027LC_Cmd
+Numeric Input Rom028LC_Cmd
+Numeric Input Rom029LC_Cmd
+Numeric Input Rom030LC_Cmd
+Numeric Input Rom031LC_Cmd
+Numeric Input Rom032LC_Cmd
+Numeric Input Rom033LC_Cmd
+Numeric Input Rom035LC_Cmd
+Numeric Input Rom037LC_Cmd
+Numeric Input Rom038LC_Cmd
+Numeric Input Rom039LC_Cmd
+Numeric Input Rom040LC_Cmd
+Numeric Input Rom041LC_Cmd
+Numeric Input Rom042LC_Cmd
+Numeric Input Rom043LC_Cmd
+Numeric Input Rom044LC_Cmd
+Numeric Input Rom045LC_Cmd
+Numeric Input Rom047LC_Cmd
+Numeric Input Rom048LC_Cmd
+Numeric Input Rom049LC_Cmd
+Numeric Input Rom050LC_Cmd
+Numeric Input Rom051LC_Cmd
+Numeric Input Rom052LC_Cmd
+Numeric Input Rom053LC_Cmd
+Numeric Input Rom054LC_Cmd
+Numeric Input Rom055LC_Cmd
+Numeric Input Rom056LC_Cmd
+Numeric Input Rom057LC_Cmd
+Numeric Input Rom058LC_Cmd
+Numeric Input Rom059LC_Cmd
+Numeric Input Rom061LC_Cmd
+Numeric Input Rom062LC_Cmd
+Numeric Input Rom063LC_Cmd
+Numeric Input Rom064LC_Cmd
+Numeric Input Rom065LC_Cmd
+Numeric Input Rom066LC_Cmd
+Numeric Input Rom067LC_Cmd
+Numeric Input Rom068LC_Cmd
+Numeric Input Rom069LC_Cmd
+Numeric Input Rom070LC_Cmd
+Numeric Input Rom072LC_Cmd
+Numeric Input Rom073LC_Cmd
+Numeric Input Rom074LC_Cmd
+Numeric Input Rom076LC_Cmd
+Numeric Input Rom077LC_Cmd
+Numeric Input Rom078LC_Cmd
+Numeric Input Rom079LC_Cmd
+Numeric Input Rom081LC_Cmd
+Numeric Input Rom082LC_Cmd
+Numeric Input Rom083LC_Cmd
+Numeric Input Rom086LC_Cmd
+Numeric Input Rom087LC_Cmd
+Numeric Input Rom088LC_Cmd
+Numeric Input Rom089LC_Cmd
+Numeric Input Rom090LC_Cmd
+Numeric Input Rom091LC_Cmd
+Numeric Input Rom092LC_Cmd
+Numeric Input Rom405LC_Cmd
+Numeric Input Rom406LC_Cmd
+Numeric Input Rom407LC_Cmd
+Numeric Input Rom411LC_Cmd
+Numeric Input Rom416LC_Cmd
+Numeric Input Rom417LC_Cmd
+Numeric Input Rom421LC_Cmd
+Numeric Input Rom423LC_Cmd
+Numeric Input Rom434LC_Cmd
+
+'Alle innganger i 2. etasje som ønsker varming ved 1 signal
+
+Numeric Input Rom001LH_Cmd
+Numeric Input Rom002LH_Cmd
+Numeric Input Rom003LH_Cmd
+Numeric Input Rom004LH_Cmd
+Numeric Input Rom005LH_Cmd
+Numeric Input Rom006LH_Cmd
+Numeric Input Rom007LH_Cmd
+Numeric Input Rom008LH_Cmd
+Numeric Input Rom009LH_Cmd
+Numeric Input Rom012LH_Cmd
+Numeric Input Rom013LH_Cmd
+Numeric Input Rom014LH_Cmd
+Numeric Input Rom015LH_Cmd
+Numeric Input Rom017LH_Cmd
+Numeric Input Rom018LH_Cmd
+Numeric Input Rom019LH_Cmd
+Numeric Input Rom022LH_Cmd
+Numeric Input Rom023LH_Cmd
+Numeric Input Rom024LH_Cmd
+Numeric Input Rom025LH_Cmd
+Numeric Input Rom026LH_Cmd
+Numeric Input Rom027LH_Cmd
+Numeric Input Rom028LH_Cmd
+Numeric Input Rom029LH_Cmd
+Numeric Input Rom030LH_Cmd
+Numeric Input Rom031LH_Cmd
+Numeric Input Rom032LH_Cmd
+Numeric Input Rom033LH_Cmd
+Numeric Input Rom035LH_Cmd
+Numeric Input Rom037LH_Cmd
+Numeric Input Rom038LH_Cmd
+Numeric Input Rom039LH_Cmd
+Numeric Input Rom040LH_Cmd
+Numeric Input Rom041LH_Cmd
+Numeric Input Rom042LH_Cmd
+Numeric Input Rom043LH_Cmd
+Numeric Input Rom044LH_Cmd
+Numeric Input Rom045LH_Cmd
+Numeric Input Rom047LH_Cmd
+Numeric Input Rom048LH_Cmd
+Numeric Input Rom049LH_Cmd
+Numeric Input Rom050LH_Cmd
+Numeric Input Rom051LH_Cmd
+Numeric Input Rom052LH_Cmd
+Numeric Input Rom053LH_Cmd
+Numeric Input Rom054LH_Cmd
+Numeric Input Rom055LH_Cmd
+Numeric Input Rom056LH_Cmd
+Numeric Input Rom057LH_Cmd
+Numeric Input Rom058LH_Cmd
+Numeric Input Rom059LH_Cmd
+Numeric Input Rom061LH_Cmd
+Numeric Input Rom062LH_Cmd
+Numeric Input Rom063LH_Cmd
+Numeric Input Rom064LH_Cmd
+Numeric Input Rom065LH_Cmd
+Numeric Input Rom066LH_Cmd
+Numeric Input Rom067LH_Cmd
+Numeric Input Rom068LH_Cmd
+Numeric Input Rom069LH_Cmd
+Numeric Input Rom070LH_Cmd
+Numeric Input Rom072LH_Cmd
+Numeric Input Rom073LH_Cmd
+Numeric Input Rom074LH_Cmd
+Numeric Input Rom076LH_Cmd
+Numeric Input Rom077LH_Cmd
+Numeric Input Rom078LH_Cmd
+Numeric Input Rom079LH_Cmd
+Numeric Input Rom081LH_Cmd
+Numeric Input Rom082LH_Cmd
+Numeric Input Rom083LH_Cmd
+Numeric Input Rom086LH_Cmd
+Numeric Input Rom087LH_Cmd
+Numeric Input Rom088LH_Cmd
+Numeric Input Rom089LH_Cmd
+Numeric Input Rom090LH_Cmd
+Numeric Input Rom091LH_Cmd
+Numeric Input Rom092LH_Cmd
+Numeric Input Rom405LH_Cmd
+Numeric Input Rom406LH_Cmd
+Numeric Input Rom407LH_Cmd
+Numeric Input Rom411LH_Cmd
+Numeric Input Rom416LH_Cmd
+Numeric Input Rom417LH_Cmd
+Numeric Input Rom421LH_Cmd
+Numeric Input Rom423LH_Cmd
+Numeric Input Rom434LH_Cmd
+
+'--------------------------------------------------------------------------------------------------
+'Analoge innganger
+
+
+'--------------------------------------------------------------------------------------------------
+'Digitale utganger
+
+Numeric output FlertallKjoling
+Numeric output FlertallVarming
+
+'--------------------------------------------------------------------------------------------------
+'Analoge og dato utganger
+
+
+Datetime Output LastRunDateTime                  ' Debug helper, indikasjon fra når scriptet ble sist kjørt
+'--------------------------------------------------------------------------------------------------
+'String utganger
+
+String Output SistAktivStatus
+
+'--------------------------------------------------------------------------------------------------
+LastRunDateTime = Date ' Indikasjon fra siste script cycle
+
+'--------------------------------------------------------------------------------------------------
+
+
+'Samler alle signaler som spør om kjøling
+
+KjolingSamlet = (Rom001LC_Cmd + Rom002LC_Cmd + Rom003LC_Cmd + Rom004LC_Cmd + Rom005LC_Cmd + Rom006LC_Cmd + Rom007LC_Cmd + Rom008LC_Cmd + Rom009LC_Cmd + Rom012LC_Cmd + Rom013LC_Cmd + Rom014LC_Cmd + Rom015LC_Cmd + Rom017LC_Cmd + Rom018LC_Cmd + Rom019LC_Cmd + Rom022LC_Cmd + Rom023LC_Cmd + Rom024LC_Cmd + Rom025LC_Cmd + Rom026LC_Cmd + Rom027LC_Cmd + Rom028LC_Cmd + Rom029LC_Cmd + Rom030LC_Cmd + Rom031LC_Cmd + Rom032LC_Cmd + Rom033LC_Cmd + Rom035LC_Cmd + Rom037LC_Cmd + Rom038LC_Cmd + Rom039LC_Cmd + Rom040LC_Cmd + Rom041LC_Cmd + Rom042LC_Cmd + Rom043LC_Cmd + Rom044LC_Cmd + Rom045LC_Cmd + Rom047LC_Cmd + Rom048LC_Cmd + Rom049LC_Cmd + Rom050LC_Cmd + Rom051LC_Cmd + Rom052LC_Cmd + Rom053LC_Cmd + Rom054LC_Cmd + Rom055LC_Cmd + Rom056LC_Cmd + Rom057LC_Cmd + Rom058LC_Cmd + Rom059LC_Cmd + Rom061LC_Cmd + Rom062LC_Cmd + Rom063LC_Cmd + Rom064LC_Cmd + Rom065LC_Cmd + Rom066LC_Cmd + Rom067LC_Cmd + Rom068LC_Cmd + Rom069LC_Cmd + Rom070LC_Cmd + Rom072LC_Cmd + Rom073LC_Cmd + Rom074LC_Cmd + Rom076LC_Cmd + Rom077LC_Cmd + Rom078LC_Cmd + Rom079LC_Cmd + Rom081LC_Cmd + Rom082LC_Cmd + Rom083LC_Cmd + Rom086LC_Cmd + Rom087LC_Cmd + Rom088LC_Cmd + Rom089LC_Cmd + Rom090LC_Cmd + Rom091LC_Cmd + Rom092LC_Cmd + Rom405LC_Cmd + Rom406LC_Cmd + Rom407LC_Cmd + Rom411LC_Cmd + Rom416LC_Cmd + Rom417LC_Cmd + Rom421LC_Cmd + Rom423LC_Cmd + Rom434LC_Cmd)
+
+'Samler alle Signaler som spørr om varming
+
+VarmingSamlet = (Rom001LH_Cmd + Rom002LH_Cmd + Rom003LH_Cmd + Rom004LH_Cmd + Rom005LH_Cmd + Rom006LH_Cmd + Rom007LH_Cmd + Rom008LH_Cmd + Rom009LH_Cmd + Rom012LH_Cmd + Rom013LH_Cmd + Rom014LH_Cmd + Rom015LH_Cmd + Rom017LH_Cmd + Rom018LH_Cmd + Rom019LH_Cmd + Rom022LH_Cmd + Rom023LH_Cmd+ Rom024LH_Cmd + Rom025LH_Cmd + Rom026LH_Cmd + Rom027LH_Cmd + Rom028LH_Cmd + Rom029LH_Cmd + Rom030LH_Cmd + Rom031LH_Cmd + Rom032LH_Cmd + Rom033LH_Cmd + Rom035LH_Cmd + Rom037LH_Cmd + Rom038LH_Cmd + Rom039LH_Cmd + Rom040LH_Cmd + Rom041LH_Cmd + Rom042LH_Cmd + Rom043LH_Cmd + Rom044LH_Cmd + Rom045LH_Cmd + Rom047LH_Cmd + Rom048LH_Cmd + Rom049LH_Cmd + Rom050LH_Cmd + Rom051LH_Cmd + Rom052LH_Cmd + Rom053LH_Cmd + Rom054LH_Cmd + Rom055LH_Cmd + Rom056LH_Cmd + Rom057LH_Cmd + Rom058LH_Cmd + Rom059LH_Cmd + Rom061LH_Cmd + Rom062LH_Cmd + Rom063LH_Cmd + Rom064LH_Cmd + Rom065LH_Cmd + Rom066LH_Cmd + Rom067LH_Cmd + Rom068LH_Cmd + Rom069LH_Cmd + Rom070LH_Cmd + Rom072LH_Cmd + Rom073LH_Cmd + Rom074LH_Cmd + Rom076LH_Cmd + Rom077LH_Cmd + Rom078LH_Cmd + Rom079LH_Cmd + Rom081LH_Cmd + Rom082LH_Cmd + Rom083LH_Cmd + Rom086LH_Cmd + Rom087LH_Cmd + Rom088LH_Cmd + Rom089LH_Cmd + Rom090LH_Cmd + Rom091LH_Cmd + Rom092LH_Cmd + Rom405LH_Cmd + Rom406LH_Cmd + Rom407LH_Cmd + Rom411LH_Cmd + Rom416LH_Cmd + Rom417LH_Cmd + Rom421LH_Cmd + Rom423LH_Cmd + Rom434LH_Cmd)
+
+If KjolingSamlet > VarmingSamlet Then
+	Set FlertallKjoling = True
+	Set FlertallVarming = False
+	SistAktivStatus = "Flertall ønsker kjøling"
+endif
+
+If VarmingSamlet >= KjolingSamlet Then
+	Set FlertallKjoling = False
+	Set FlertallVarming = True
+	SistAktivStatus = "Flertall ønsker varming"
+endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
