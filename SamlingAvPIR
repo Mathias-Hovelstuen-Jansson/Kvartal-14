@@ -1,0 +1,178 @@
+'
+'
+' Samling og spesial styring med PIR 2.etg 
+' Mathias Hovelstuen Jansson (mathiashjan@gmail.com)
+' 11.10.2024
+'
+' Bravida.no
+'
+'--------------------------------------------------------------------------------------------------
+'Datoer og internvariabler
+
+Numeric PirMellom
+
+'--------------------------------------------------------------------------------------------------
+'Digitale innganger
+
+Numeric Input PirRom000
+Numeric Input PirRom001
+Numeric Input PirRom002_1
+Numeric Input PirRom002_2
+Numeric Input PirRom003
+Numeric Input PirRom004
+Numeric Input PirRom005
+Numeric Input PirRom006
+Numeric Input PirRom007
+Numeric Input PirRom008
+Numeric Input PirRom009
+Numeric Input PirRom012_1
+Numeric Input PirRom012_2
+Numeric Input PirRom013
+Numeric Input PirRom014
+Numeric Input PirRom015_1
+Numeric Input PirRom015_2
+Numeric Input PirRom015_3
+Numeric Input PirRom017
+Numeric Input PirRom018_1
+Numeric Input PirRom018_2
+Numeric Input PirRom018_3
+Numeric Input PirRom019_1
+Numeric Input PirRom019_2
+Numeric Input PirRom019_3
+Numeric Input PirRom022
+Numeric Input PirRom023
+Numeric Input PirRom024
+Numeric Input PirRom025
+Numeric Input PirRom026
+Numeric Input PirRom027
+Numeric Input PirRom028
+Numeric Input PirRom029
+Numeric Input PirRom030
+Numeric Input PirRom031
+Numeric Input PirRom032
+Numeric Input PirRom033
+Numeric Input PirRom035_1
+Numeric Input PirRom035_2
+Numeric Input PirRom037_1
+Numeric Input PirRom037_2
+Numeric Input PirRom037_3
+Numeric Input PirRom038
+Numeric Input PirRom039
+Numeric Input PirRom040
+Numeric Input PirRom041
+Numeric Input PirRom042
+Numeric Input PirRom043_1
+Numeric Input PirRom043_2
+Numeric Input PirRom044
+Numeric Input PirRom045
+Numeric Input PirRom047
+Numeric Input PirRom048
+Numeric Input PirRom049
+Numeric Input PirRom050
+Numeric Input PirRom051_1
+Numeric Input PirRom051_2
+Numeric Input PirRom052
+Numeric Input PirRom053
+Numeric Input PirRom054
+Numeric Input PirRom055
+Numeric Input PirRom056_1
+Numeric Input PirRom056_2
+Numeric Input PirRom056_3
+Numeric Input PirRom057_1
+Numeric Input PirRom057_2
+Numeric Input PirRom058
+Numeric Input PirRom059
+Numeric Input PirRom061
+Numeric Input PirRom062
+Numeric Input PirRom063
+Numeric Input PirRom064
+Numeric Input PirRom065_1
+Numeric Input PirRom065_2
+Numeric Input PirRom066
+Numeric Input PirRom067
+Numeric Input PirRom068
+Numeric Input PirRom069_1
+Numeric Input PirRom069_2
+Numeric Input PirRom070_1
+Numeric Input PirRom070_2
+Numeric Input PirRom072_1
+Numeric Input PirRom072_2
+Numeric Input PirRom073
+Numeric Input PirRom074
+Numeric Input PirRom076
+Numeric Input PirRom077_1
+Numeric Input PirRom077_2
+Numeric Input PirRom078_1
+Numeric Input PirRom078_2
+Numeric Input PirRom078_3
+Numeric Input PirRom078_4
+Numeric Input PirRom079
+Numeric Input PirRom081
+Numeric Input PirRom082
+Numeric Input PirRom083
+Numeric Input PirRom086
+Numeric Input PirRom087
+Numeric Input PirRom088
+Numeric Input PirRom089
+Numeric Input PirRom090_1
+Numeric Input PirRom090_2
+Numeric Input PirRom090_3
+Numeric Input PirRom090_4
+Numeric Input PirRom091
+Numeric Input PirRom092
+Numeric Input PirRom093
+Numeric Input PirRom401_1
+Numeric Input PirRom401_2
+Numeric Input PirRom401_3
+Numeric Input PirRom401_4
+Numeric Input PirRom405
+Numeric Input PirRom406
+Numeric Input PirRom407
+Numeric Input PirRom411_1
+Numeric Input PirRom411_2
+Numeric Input PirRom411_3
+Numeric Input PirRom416_1
+Numeric Input PirRom416_2
+Numeric Input PirRom417
+Numeric Input PirRom421
+Numeric Input PirRom423
+Numeric Input PirRom434
+
+
+'--------------------------------------------------------------------------------------------------
+'Analoge innganger
+
+
+'--------------------------------------------------------------------------------------------------
+'Digitale utganger
+
+Numeric Output PirSamlet												 ' Samling av alle PIR verdier i hele etasjen
+
+
+'--------------------------------------------------------------------------------------------------
+'Analoge og dato utganger
+
+
+Datetime Output LastRunDateTime                  ' Debug helper, indikasjon fra når scriptet ble sist kjørt
+'--------------------------------------------------------------------------------------------------
+'String utganger
+
+
+
+'--------------------------------------------------------------------------------------------------
+LastRunDateTime = Date ' Indikasjon fra siste script cycle
+
+'--------------------------------------------------------------------------------------------------
+
+'Formel for å regne ut alle pirene i hele etasjen
+'Måtte dele formelen opp i to deler fordi den ble for lang
+
+
+PirMellom = (PirRom000 + PirRom001 + PirRom002_1 + PirRom002_2 + PirRom003 + PirRom004 + PirRom005 + PirRom006 + PirRom007 + PirRom008 + PirRom009 + PirRom012_1 + PirRom012_2 + PirRom013 + PirRom014 + PirRom015_1 + PirRom015_2 + PirRom015_3 + PirRom017 + PirRom018_1 + PirRom018_2 + PirRom018_3 + PirRom019_1 + PirRom019_2 + PirRom019_3 + PirRom022 + PirRom023 + PirRom024 + PirRom025 + PirRom026 + PirRom027 + PirRom028 + PirRom029 + PirRom030 + PirRom031 + PirRom032 + PirRom033 + PirRom035_1 + PirRom035_2 + PirRom037_1 + PirRom037_2 + PirRom037_3 + PirRom038 + PirRom039 + PirRom040 + PirRom041 + PirRom042 + PirRom043_1 + PirRom043_2 + PirRom044 + PirRom045 + PirRom047 + PirRom048 + PirRom049 + PirRom050 + PirRom051_1 + PirRom051_2 + PirRom052 + PirRom053 + PirRom054 + PirRom055 + PirRom056_1 + PirRom056_2 + PirRom056_3 + PirRom057_1 + PirRom057_2 + PirRom058 + PirRom059 + PirRom061 + PirRom062 + PirRom063 + PirRom064 + PirRom065_1 + PirRom065_2 + PirRom066 + PirRom067 + PirRom068 + PirRom069_1 + PirRom069_2 + PirRom070_1 + PirRom070_2 + PirRom072_1 + PirRom072_2 + PirRom073 + PirRom074 + PirRom076 + PirRom077_1 + PirRom077_2 + PirRom078_1 + PirRom078_2 + PirRom078_3)
+
+PirSamlet = (PirMellom + PirRom078_4 + PirRom079 + PirRom081 + PirRom082 + PirRom083 + PirRom086 + PirRom087 + PirRom088 + PirRom089 + PirRom090_1 + PirRom090_2 + PirRom090_3 + PirRom090_4 + PirRom091 + PirRom092 + PirRom093 + PirRom401_1 + PirRom401_2 + PirRom401_3 + PirRom401_4 + PirRom405 + PirRom406 + PirRom407 + PirRom411_1 + PirRom411_2 + PirRom411_3 + PirRom416_1 + PirRom416_2 + PirRom417 + PirRom421 + PirRom423 + PirRom434)
+
+'--------------------------------------------------------------------------------------------------
+
+
+
