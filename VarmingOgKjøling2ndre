@@ -1,14 +1,18 @@
 '
 '
-' Lys setup uten solavskjerming romstyring generisk
+' Styring av varming og kjøling til 2.dre etasje
 ' Mathias Hovelstuen Jansson (mathiashjan@gmail.com)
-' 13.Numeric Input 09.Numeric Input Rom2Numeric Input 0Rom24
-' +47 9Numeric Input 01 71 698
+' 11.10.2024
+' 
 ' Bravida.no
 '
 '--------------------------------------------------------------------------------------------------
 'Datoer og internvariabler
 Numeric KjolingSamlet, VarmingSamlet
+Numeric Rom001LC_Clc, Rom002LC_Clc, Rom003LC_Clc, Rom004LC_Clc, Rom005LC_Clc, Rom006LC_Clc, Rom007LC_Clc, Rom008LC_Clc, Rom009LC_Clc, Rom012LC_Clc, Rom013LC_Clc, Rom014LC_Clc, Rom015LC_Clc, Rom017LC_Clc, Rom018LC_Clc, Rom019LC_Clc, Rom022LC_Clc, Rom023LC_Clc, Rom024LC_Clc, Rom025LC_Clc, Rom026LC_Clc, Rom027LC_Clc, Rom028LC_Clc, Rom029LC_Clc, Rom030LC_Clc, Rom031LC_Clc, Rom032LC_Clc, Rom033LC_Clc, Rom035LC_Clc, Rom037LC_Clc, Rom038LC_Clc, Rom039LC_Clc, Rom040LC_Clc, Rom041LC_Clc, Rom042LC_Clc, Rom043LC_Clc, Rom044LC_Clc, Rom045LC_Clc, Rom047LC_Clc, Rom048LC_Clc, Rom049LC_Clc, Rom050LC_Clc, Rom051LC_Clc, Rom052LC_Clc, Rom053LC_Clc, Rom054LC_Clc, Rom055LC_Clc, Rom056LC_Clc, Rom057LC_Clc, Rom058LC_Clc, Rom059LC_Clc, Rom061LC_Clc, Rom062LC_Clc, Rom063LC_Clc, Rom064LC_Clc, Rom065LC_Clc, Rom066LC_Clc, Rom067LC_Clc, Rom068LC_Clc, Rom069LC_Clc, Rom070LC_Clc, Rom072LC_Clc, Rom073LC_Clc, Rom074LC_Clc, Rom076LC_Clc, Rom077LC_Clc, Rom078LC_Clc, Rom079LC_Clc, Rom081LC_Clc, Rom082LC_Clc, Rom083LC_Clc, Rom086LC_Clc, Rom087LC_Clc, Rom088LC_Clc, Rom089LC_Clc, Rom090LC_Clc, Rom091LC_Clc, Rom092LC_Clc, Rom405LC_Clc, Rom406LC_Clc, Rom407LC_Clc, Rom411LC_Clc, Rom416LC_Clc, Rom417LC_Clc, Rom421LC_Clc, Rom423LC_Clc, Rom434LC_Clc
+
+Numeric Rom001LH_Clc, Rom002LH_Clc, Rom003LH_Clc, Rom004LH_Clc, Rom005LH_Clc, Rom006LH_Clc, Rom007LH_Clc, Rom008LH_Clc, Rom009LH_Clc, Rom012LH_Clc, Rom013LH_Clc, Rom014LH_Clc, Rom015LH_Clc, Rom017LH_Clc, Rom018LH_Clc, Rom019LH_Clc, Rom022LH_Clc, Rom023LH_Clc, Rom024LH_Clc, Rom025LH_Clc, Rom026LH_Clc, Rom027LH_Clc, Rom028LH_Clc, Rom029LH_Clc, Rom030LH_Clc, Rom031LH_Clc, Rom032LH_Clc, Rom033LH_Clc, Rom035LH_Clc, Rom037LH_Clc, Rom038LH_Clc, Rom039LH_Clc, Rom040LH_Clc, Rom041LH_Clc, Rom042LH_Clc, Rom043LH_Clc, Rom044LH_Clc, Rom045LH_Clc, Rom047LH_Clc, Rom048LH_Clc, Rom049LH_Clc, Rom050LH_Clc, Rom051LH_Clc, Rom052LH_Clc, Rom053LH_Clc, Rom054LH_Clc, Rom055LH_Clc, Rom056LH_Clc, Rom057LH_Clc, Rom058LH_Clc, Rom059LH_Clc, Rom061LH_Clc, Rom062LH_Clc, Rom063LH_Clc, Rom064LH_Clc, Rom065LH_Clc, Rom066LH_Clc, Rom067LH_Clc, Rom068LH_Clc, Rom069LH_Clc, Rom070LH_Clc, Rom072LH_Clc, Rom073LH_Clc, Rom074LH_Clc, Rom076LH_Clc, Rom077LH_Clc, Rom078LH_Clc, Rom079LH_Clc, Rom081LH_Clc, Rom082LH_Clc, Rom083LH_Clc, Rom086LH_Clc, Rom087LH_Clc, Rom088LH_Clc, Rom089LH_Clc, Rom090LH_Clc, Rom091LH_Clc, Rom092LH_Clc, Rom405LH_Clc, Rom406LH_Clc, Rom407LH_Clc, Rom411LH_Clc, Rom416LH_Clc, Rom417LH_Clc, Rom421LH_Clc, Rom423LH_Clc, Rom434LH_Clc
+
 
 '--------------------------------------------------------------------------------------------------
 'Digitale innganger
@@ -309,13 +313,1322 @@ LastRunDateTime = Date ' Indikasjon fra siste script cycle
 '--------------------------------------------------------------------------------------------------
 
 
-'Samler alle signaler som spør om kjøling
 
-KjolingSamlet = (Rom001LC_Cmd + Rom002LC_Cmd + Rom003LC_Cmd + Rom004LC_Cmd + Rom005LC_Cmd + Rom006LC_Cmd + Rom007LC_Cmd + Rom008LC_Cmd + Rom009LC_Cmd + Rom012LC_Cmd + Rom013LC_Cmd + Rom014LC_Cmd + Rom015LC_Cmd + Rom017LC_Cmd + Rom018LC_Cmd + Rom019LC_Cmd + Rom022LC_Cmd + Rom023LC_Cmd + Rom024LC_Cmd + Rom025LC_Cmd + Rom026LC_Cmd + Rom027LC_Cmd + Rom028LC_Cmd + Rom029LC_Cmd + Rom030LC_Cmd + Rom031LC_Cmd + Rom032LC_Cmd + Rom033LC_Cmd + Rom035LC_Cmd + Rom037LC_Cmd + Rom038LC_Cmd + Rom039LC_Cmd + Rom040LC_Cmd + Rom041LC_Cmd + Rom042LC_Cmd + Rom043LC_Cmd + Rom044LC_Cmd + Rom045LC_Cmd + Rom047LC_Cmd + Rom048LC_Cmd + Rom049LC_Cmd + Rom050LC_Cmd + Rom051LC_Cmd + Rom052LC_Cmd + Rom053LC_Cmd + Rom054LC_Cmd + Rom055LC_Cmd + Rom056LC_Cmd + Rom057LC_Cmd + Rom058LC_Cmd + Rom059LC_Cmd + Rom061LC_Cmd + Rom062LC_Cmd + Rom063LC_Cmd + Rom064LC_Cmd + Rom065LC_Cmd + Rom066LC_Cmd + Rom067LC_Cmd + Rom068LC_Cmd + Rom069LC_Cmd + Rom070LC_Cmd + Rom072LC_Cmd + Rom073LC_Cmd + Rom074LC_Cmd + Rom076LC_Cmd + Rom077LC_Cmd + Rom078LC_Cmd + Rom079LC_Cmd + Rom081LC_Cmd + Rom082LC_Cmd + Rom083LC_Cmd + Rom086LC_Cmd + Rom087LC_Cmd + Rom088LC_Cmd + Rom089LC_Cmd + Rom090LC_Cmd + Rom091LC_Cmd + Rom092LC_Cmd + Rom405LC_Cmd + Rom406LC_Cmd + Rom407LC_Cmd + Rom411LC_Cmd + Rom416LC_Cmd + Rom417LC_Cmd + Rom421LC_Cmd + Rom423LC_Cmd + Rom434LC_Cmd)
 
-'Samler alle Signaler som spørr om varming
+if Rom001Prioritet > 0 And Rom001Prioritet < 5 Then
+	
+	If Rom001LC_Cmd = 1 Then
+		Rom001LC_Clc = Rom001Prioritet + Rom001LC_Cmd
+	Else
+ 	Rom001LC_Clc = 0
+	Endif
+	If Rom001LC_Cmd = 1 Then
+		Rom001LH_Clc = Rom001Prioritet + Rom001LH_Cmd
+	Else
+	Rom001LH_Clc = 0
+	Endif
+Endif
 
-VarmingSamlet = (Rom001LH_Cmd + Rom002LH_Cmd + Rom003LH_Cmd + Rom004LH_Cmd + Rom005LH_Cmd + Rom006LH_Cmd + Rom007LH_Cmd + Rom008LH_Cmd + Rom009LH_Cmd + Rom012LH_Cmd + Rom013LH_Cmd + Rom014LH_Cmd + Rom015LH_Cmd + Rom017LH_Cmd + Rom018LH_Cmd + Rom019LH_Cmd + Rom022LH_Cmd + Rom023LH_Cmd+ Rom024LH_Cmd + Rom025LH_Cmd + Rom026LH_Cmd + Rom027LH_Cmd + Rom028LH_Cmd + Rom029LH_Cmd + Rom030LH_Cmd + Rom031LH_Cmd + Rom032LH_Cmd + Rom033LH_Cmd + Rom035LH_Cmd + Rom037LH_Cmd + Rom038LH_Cmd + Rom039LH_Cmd + Rom040LH_Cmd + Rom041LH_Cmd + Rom042LH_Cmd + Rom043LH_Cmd + Rom044LH_Cmd + Rom045LH_Cmd + Rom047LH_Cmd + Rom048LH_Cmd + Rom049LH_Cmd + Rom050LH_Cmd + Rom051LH_Cmd + Rom052LH_Cmd + Rom053LH_Cmd + Rom054LH_Cmd + Rom055LH_Cmd + Rom056LH_Cmd + Rom057LH_Cmd + Rom058LH_Cmd + Rom059LH_Cmd + Rom061LH_Cmd + Rom062LH_Cmd + Rom063LH_Cmd + Rom064LH_Cmd + Rom065LH_Cmd + Rom066LH_Cmd + Rom067LH_Cmd + Rom068LH_Cmd + Rom069LH_Cmd + Rom070LH_Cmd + Rom072LH_Cmd + Rom073LH_Cmd + Rom074LH_Cmd + Rom076LH_Cmd + Rom077LH_Cmd + Rom078LH_Cmd + Rom079LH_Cmd + Rom081LH_Cmd + Rom082LH_Cmd + Rom083LH_Cmd + Rom086LH_Cmd + Rom087LH_Cmd + Rom088LH_Cmd + Rom089LH_Cmd + Rom090LH_Cmd + Rom091LH_Cmd + Rom092LH_Cmd + Rom405LH_Cmd + Rom406LH_Cmd + Rom407LH_Cmd + Rom411LH_Cmd + Rom416LH_Cmd + Rom417LH_Cmd + Rom421LH_Cmd + Rom423LH_Cmd + Rom434LH_Cmd)
+
+if Rom002Prioritet > 0 And Rom002Prioritet < 5 Then
+	
+	If Rom002LC_Cmd = 1 Then
+		Rom002LC_Clc = Rom002Prioritet + Rom002LC_Cmd
+	Else
+ 	Rom002LC_Clc = 0
+	Endif
+	If Rom002LC_Cmd = 1 Then
+		Rom002LH_Clc = Rom002Prioritet + Rom002LH_Cmd
+	Else
+	Rom002LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom003Prioritet > 0 And Rom003Prioritet < 5 Then
+	
+	If Rom003LC_Cmd = 1 Then
+		Rom003LC_Clc = Rom003Prioritet + Rom003LC_Cmd
+	Else
+ 	Rom003LC_Clc = 0
+	Endif
+	If Rom003LC_Cmd = 1 Then
+		Rom003LH_Clc = Rom003Prioritet + Rom003LH_Cmd
+	Else
+	Rom003LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom004Prioritet > 0 And Rom004Prioritet < 5 Then
+	
+	If Rom004LC_Cmd = 1 Then
+		Rom004LC_Clc = Rom004Prioritet + Rom004LC_Cmd
+	Else
+ 	Rom004LC_Clc = 0
+	Endif
+	If Rom004LC_Cmd = 1 Then
+		Rom004LH_Clc = Rom004Prioritet + Rom004LH_Cmd
+	Else
+	Rom004LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom005Prioritet > 0 And Rom005Prioritet < 5 Then
+	
+	If Rom005LC_Cmd = 1 Then
+		Rom005LC_Clc = Rom005Prioritet + Rom005LC_Cmd
+	Else
+ 	Rom005LC_Clc = 0
+	Endif
+	If Rom005LC_Cmd = 1 Then
+		Rom005LH_Clc = Rom005Prioritet + Rom005LH_Cmd
+	Else
+	Rom005LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom006Prioritet > 0 And Rom006Prioritet < 5 Then
+	
+	If Rom006LC_Cmd = 1 Then
+		Rom006LC_Clc = Rom006Prioritet + Rom006LC_Cmd
+	Else
+ 	Rom006LC_Clc = 0
+	Endif
+	If Rom006LC_Cmd = 1 Then
+		Rom006LH_Clc = Rom006Prioritet + Rom006LH_Cmd
+	Else
+	Rom006LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom007Prioritet > 0 And Rom007Prioritet < 5 Then
+	
+	If Rom007LC_Cmd = 1 Then
+		Rom007LC_Clc = Rom007Prioritet + Rom007LC_Cmd
+	Else
+ 	Rom007LC_Clc = 0
+	Endif
+	If Rom007LC_Cmd = 1 Then
+		Rom007LH_Clc = Rom007Prioritet + Rom007LH_Cmd
+	Else
+	Rom007LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom008Prioritet > 0 And Rom008Prioritet < 5 Then
+	
+	If Rom008LC_Cmd = 1 Then
+		Rom008LC_Clc = Rom008Prioritet + Rom008LC_Cmd
+	Else
+ 	Rom008LC_Clc = 0
+	Endif
+	If Rom008LC_Cmd = 1 Then
+		Rom008LH_Clc = Rom008Prioritet + Rom008LH_Cmd
+	Else
+	Rom008LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom009Prioritet > 0 And Rom009Prioritet < 5 Then
+	
+	If Rom009LC_Cmd = 1 Then
+		Rom009LC_Clc = Rom009Prioritet + Rom009LC_Cmd
+	Else
+ 	Rom009LC_Clc = 0
+	Endif
+	If Rom009LC_Cmd = 1 Then
+		Rom009LH_Clc = Rom009Prioritet + Rom009LH_Cmd
+	Else
+	Rom009LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom012Prioritet > 0 And Rom012Prioritet < 5 Then
+	
+	If Rom012LC_Cmd = 1 Then
+		Rom012LC_Clc = Rom012Prioritet + Rom012LC_Cmd
+	Else
+ 	Rom012LC_Clc = 0
+	Endif
+	If Rom012LC_Cmd = 1 Then
+		Rom012LH_Clc = Rom012Prioritet + Rom012LH_Cmd
+	Else
+	Rom012LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom013Prioritet > 0 And Rom013Prioritet < 5 Then
+	
+	If Rom013LC_Cmd = 1 Then
+		Rom013LC_Clc = Rom013Prioritet + Rom013LC_Cmd
+	Else
+ 	Rom013LC_Clc = 0
+	Endif
+	If Rom013LC_Cmd = 1 Then
+		Rom013LH_Clc = Rom013Prioritet + Rom013LH_Cmd
+	Else
+	Rom013LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom014Prioritet > 0 And Rom014Prioritet < 5 Then
+	
+	If Rom014LC_Cmd = 1 Then
+		Rom014LC_Clc = Rom014Prioritet + Rom014LC_Cmd
+	Else
+ 	Rom014LC_Clc = 0
+	Endif
+	If Rom014LC_Cmd = 1 Then
+		Rom014LH_Clc = Rom014Prioritet + Rom014LH_Cmd
+	Else
+	Rom014LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom015Prioritet > 0 And Rom015Prioritet < 5 Then
+	
+	If Rom015LC_Cmd = 1 Then
+		Rom015LC_Clc = Rom015Prioritet + Rom015LC_Cmd
+	Else
+ 	Rom015LC_Clc = 0
+	Endif
+	If Rom015LC_Cmd = 1 Then
+		Rom015LH_Clc = Rom015Prioritet + Rom015LH_Cmd
+	Else
+	Rom015LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom017Prioritet > 0 And Rom017Prioritet < 5 Then
+	
+	If Rom017LC_Cmd = 1 Then
+		Rom017LC_Clc = Rom017Prioritet + Rom017LC_Cmd
+	Else
+ 	Rom017LC_Clc = 0
+	Endif
+	If Rom017LC_Cmd = 1 Then
+		Rom017LH_Clc = Rom017Prioritet + Rom017LH_Cmd
+	Else
+	Rom017LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom018Prioritet > 0 And Rom018Prioritet < 5 Then
+	
+	If Rom018LC_Cmd = 1 Then
+		Rom018LC_Clc = Rom018Prioritet + Rom018LC_Cmd
+	Else
+ 	Rom018LC_Clc = 0
+	Endif
+	If Rom018LC_Cmd = 1 Then
+		Rom018LH_Clc = Rom018Prioritet + Rom018LH_Cmd
+	Else
+	Rom018LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom019Prioritet > 0 And Rom019Prioritet < 5 Then
+	
+	If Rom019LC_Cmd = 1 Then
+		Rom019LC_Clc = Rom019Prioritet + Rom019LC_Cmd
+	Else
+ 	Rom019LC_Clc = 0
+	Endif
+	If Rom019LC_Cmd = 1 Then
+		Rom019LH_Clc = Rom019Prioritet + Rom019LH_Cmd
+	Else
+	Rom019LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom022Prioritet > 0 And Rom022Prioritet < 5 Then
+	
+	If Rom022LC_Cmd = 1 Then
+		Rom022LC_Clc = Rom022Prioritet + Rom022LC_Cmd
+	Else
+ 	Rom022LC_Clc = 0
+	Endif
+	If Rom022LC_Cmd = 1 Then
+		Rom022LH_Clc = Rom022Prioritet + Rom022LH_Cmd
+	Else
+	Rom022LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom023Prioritet > 0 And Rom023Prioritet < 5 Then
+	
+	If Rom023LC_Cmd = 1 Then
+		Rom023LC_Clc = Rom023Prioritet + Rom023LC_Cmd
+	Else
+ 	Rom023LC_Clc = 0
+	Endif
+	If Rom023LC_Cmd = 1 Then
+		Rom023LH_Clc = Rom023Prioritet + Rom023LH_Cmd
+	Else
+	Rom023LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom024Prioritet > 0 And Rom024Prioritet < 5 Then
+	
+	If Rom024LC_Cmd = 1 Then
+		Rom024LC_Clc = Rom024Prioritet + Rom024LC_Cmd
+	Else
+ 	Rom024LC_Clc = 0
+	Endif
+	If Rom024LC_Cmd = 1 Then
+		Rom024LH_Clc = Rom024Prioritet + Rom024LH_Cmd
+	Else
+	Rom024LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom025Prioritet > 0 And Rom025Prioritet < 5 Then
+	
+	If Rom025LC_Cmd = 1 Then
+		Rom025LC_Clc = Rom025Prioritet + Rom025LC_Cmd
+	Else
+ 	Rom025LC_Clc = 0
+	Endif
+	If Rom025LC_Cmd = 1 Then
+		Rom025LH_Clc = Rom025Prioritet + Rom025LH_Cmd
+	Else
+	Rom025LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom026Prioritet > 0 And Rom026Prioritet < 5 Then
+	
+	If Rom026LC_Cmd = 1 Then
+		Rom026LC_Clc = Rom026Prioritet + Rom026LC_Cmd
+	Else
+ 	Rom026LC_Clc = 0
+	Endif
+	If Rom026LC_Cmd = 1 Then
+		Rom026LH_Clc = Rom026Prioritet + Rom026LH_Cmd
+	Else
+	Rom026LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom027Prioritet > 0 And Rom027Prioritet < 5 Then
+	
+	If Rom027LC_Cmd = 1 Then
+		Rom027LC_Clc = Rom027Prioritet + Rom027LC_Cmd
+	Else
+ 	Rom027LC_Clc = 0
+	Endif
+	If Rom027LC_Cmd = 1 Then
+		Rom027LH_Clc = Rom027Prioritet + Rom027LH_Cmd
+	Else
+	Rom027LH_Clc = 0
+	Endif
+Endif
+
+if Rom028Prioritet > 0 And Rom028Prioritet < 5 Then
+	
+	If Rom028LC_Cmd = 1 Then
+		Rom028LC_Clc = Rom028Prioritet + Rom028LC_Cmd
+	Else
+ 	Rom028LC_Clc = 0
+	Endif
+	If Rom028LC_Cmd = 1 Then
+		Rom028LH_Clc = Rom028Prioritet + Rom028LH_Cmd
+	Else
+	Rom028LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom029Prioritet > 0 And Rom029Prioritet < 5 Then
+	
+	If Rom029LC_Cmd = 1 Then
+		Rom029LC_Clc = Rom029Prioritet + Rom029LC_Cmd
+	Else
+ 	Rom029LC_Clc = 0
+	Endif
+	If Rom029LC_Cmd = 1 Then
+		Rom029LH_Clc = Rom029Prioritet + Rom029LH_Cmd
+	Else
+	Rom029LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom030Prioritet > 0 And Rom030Prioritet < 5 Then
+	
+	If Rom030LC_Cmd = 1 Then
+		Rom030LC_Clc = Rom030Prioritet + Rom030LC_Cmd
+	Else
+ 	Rom030LC_Clc = 0
+	Endif
+	If Rom030LC_Cmd = 1 Then
+		Rom030LH_Clc = Rom030Prioritet + Rom030LH_Cmd
+	Else
+	Rom030LH_Clc = 0
+	Endif
+Endif
+
+if Rom031Prioritet > 0 And Rom031Prioritet < 5 Then
+	
+	If Rom031LC_Cmd = 1 Then
+		Rom031LC_Clc = Rom031Prioritet + Rom031LC_Cmd
+	Else
+ 	Rom031LC_Clc = 0
+	Endif
+	If Rom031LC_Cmd = 1 Then
+		Rom031LH_Clc = Rom031Prioritet + Rom031LH_Cmd
+	Else
+	Rom031LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom032Prioritet > 0 And Rom032Prioritet < 5 Then
+	
+	If Rom032LC_Cmd = 1 Then
+		Rom032LC_Clc = Rom032Prioritet + Rom032LC_Cmd
+	Else
+ 	Rom032LC_Clc = 0
+	Endif
+	If Rom032LC_Cmd = 1 Then
+		Rom032LH_Clc = Rom032Prioritet + Rom032LH_Cmd
+	Else
+	Rom032LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom033Prioritet > 0 And Rom033Prioritet < 5 Then
+	
+	If Rom033LC_Cmd = 1 Then
+		Rom033LC_Clc = Rom033Prioritet + Rom033LC_Cmd
+	Else
+ 	Rom033LC_Clc = 0
+	Endif
+	If Rom033LC_Cmd = 1 Then
+		Rom033LH_Clc = Rom033Prioritet + Rom033LH_Cmd
+	Else
+	Rom033LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom035Prioritet > 0 And Rom035Prioritet < 5 Then
+	
+	If Rom035LC_Cmd = 1 Then
+		Rom035LC_Clc = Rom035Prioritet + Rom035LC_Cmd
+	Else
+ 	Rom035LC_Clc = 0
+	Endif
+	If Rom035LC_Cmd = 1 Then
+		Rom035LH_Clc = Rom035Prioritet + Rom035LH_Cmd
+	Else
+	Rom035LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom037Prioritet > 0 And Rom037Prioritet < 5 Then
+	
+	If Rom037LC_Cmd = 1 Then
+		Rom037LC_Clc = Rom037Prioritet + Rom037LC_Cmd
+	Else
+ 	Rom037LC_Clc = 0
+	Endif
+	If Rom037LC_Cmd = 1 Then
+		Rom037LH_Clc = Rom037Prioritet + Rom037LH_Cmd
+	Else
+	Rom037LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom038Prioritet > 0 And Rom038Prioritet < 5 Then
+	
+	If Rom038LC_Cmd = 1 Then
+		Rom038LC_Clc = Rom038Prioritet + Rom038LC_Cmd
+	Else
+ 	Rom038LC_Clc = 0
+	Endif
+	If Rom038LC_Cmd = 1 Then
+		Rom038LH_Clc = Rom038Prioritet + Rom038LH_Cmd
+	Else
+	Rom038LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom039Prioritet > 0 And Rom039Prioritet < 5 Then
+	
+	If Rom039LC_Cmd = 1 Then
+		Rom039LC_Clc = Rom039Prioritet + Rom039LC_Cmd
+	Else
+ 	Rom039LC_Clc = 0
+	Endif
+	If Rom039LC_Cmd = 1 Then
+		Rom039LH_Clc = Rom039Prioritet + Rom039LH_Cmd
+	Else
+	Rom039LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom040Prioritet > 0 And Rom040Prioritet < 5 Then
+	
+	If Rom040LC_Cmd = 1 Then
+		Rom040LC_Clc = Rom040Prioritet + Rom040LC_Cmd
+	Else
+ 	Rom040LC_Clc = 0
+	Endif
+	If Rom040LC_Cmd = 1 Then
+		Rom040LH_Clc = Rom040Prioritet + Rom040LH_Cmd
+	Else
+	Rom040LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom041Prioritet > 0 And Rom041Prioritet < 5 Then
+	
+	If Rom041LC_Cmd = 1 Then
+		Rom041LC_Clc = Rom041Prioritet + Rom041LC_Cmd
+	Else
+ 	Rom041LC_Clc = 0
+	Endif
+	If Rom041LC_Cmd = 1 Then
+		Rom041LH_Clc = Rom041Prioritet + Rom041LH_Cmd
+	Else
+	Rom041LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom042Prioritet > 0 And Rom042Prioritet < 5 Then
+	
+	If Rom042LC_Cmd = 1 Then
+		Rom042LC_Clc = Rom042Prioritet + Rom042LC_Cmd
+	Else
+ 	Rom042LC_Clc = 0
+	Endif
+	If Rom042LC_Cmd = 1 Then
+		Rom042LH_Clc = Rom042Prioritet + Rom042LH_Cmd
+	Else
+	Rom042LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom043Prioritet > 0 And Rom043Prioritet < 5 Then
+	
+	If Rom043LC_Cmd = 1 Then
+		Rom043LC_Clc = Rom043Prioritet + Rom043LC_Cmd
+	Else
+ 	Rom043LC_Clc = 0
+	Endif
+	If Rom043LC_Cmd = 1 Then
+		Rom043LH_Clc = Rom043Prioritet + Rom043LH_Cmd
+	Else
+	Rom043LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom044Prioritet > 0 And Rom044Prioritet < 5 Then
+	
+	If Rom044LC_Cmd = 1 Then
+		Rom044LC_Clc = Rom044Prioritet + Rom044LC_Cmd
+	Else
+ 	Rom044LC_Clc = 0
+	Endif
+	If Rom044LC_Cmd = 1 Then
+		Rom044LH_Clc = Rom044Prioritet + Rom044LH_Cmd
+	Else
+	Rom044LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom045Prioritet > 0 And Rom045Prioritet < 5 Then
+	
+	If Rom045LC_Cmd = 1 Then
+		Rom045LC_Clc = Rom045Prioritet + Rom045LC_Cmd
+	Else
+ 	Rom045LC_Clc = 0
+	Endif
+	If Rom045LC_Cmd = 1 Then
+		Rom045LH_Clc = Rom045Prioritet + Rom045LH_Cmd
+	Else
+	Rom045LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom047Prioritet > 0 And Rom047Prioritet < 5 Then
+	
+	If Rom047LC_Cmd = 1 Then
+		Rom047LC_Clc = Rom047Prioritet + Rom047LC_Cmd
+	Else
+ 	Rom047LC_Clc = 0
+	Endif
+	If Rom047LC_Cmd = 1 Then
+		Rom047LH_Clc = Rom047Prioritet + Rom047LH_Cmd
+	Else
+	Rom047LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom048Prioritet > 0 And Rom048Prioritet < 5 Then
+	
+	If Rom048LC_Cmd = 1 Then
+		Rom048LC_Clc = Rom048Prioritet + Rom048LC_Cmd
+	Else
+ 	Rom048LC_Clc = 0
+	Endif
+	If Rom048LC_Cmd = 1 Then
+		Rom048LH_Clc = Rom048Prioritet + Rom048LH_Cmd
+	Else
+	Rom048LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom049Prioritet > 0 And Rom049Prioritet < 5 Then
+	
+	If Rom049LC_Cmd = 1 Then
+		Rom049LC_Clc = Rom049Prioritet + Rom049LC_Cmd
+	Else
+ 	Rom049LC_Clc = 0
+	Endif
+	If Rom049LC_Cmd = 1 Then
+		Rom049LH_Clc = Rom049Prioritet + Rom049LH_Cmd
+	Else
+	Rom049LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom050Prioritet > 0 And Rom050Prioritet < 5 Then
+	
+	If Rom050LC_Cmd = 1 Then
+		Rom050LC_Clc = Rom050Prioritet + Rom050LC_Cmd
+	Else
+ 	Rom050LC_Clc = 0
+	Endif
+	If Rom050LC_Cmd = 1 Then
+		Rom050LH_Clc = Rom050Prioritet + Rom050LH_Cmd
+	Else
+	Rom050LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom051Prioritet > 0 And Rom051Prioritet < 5 Then
+	
+	If Rom051LC_Cmd = 1 Then
+		Rom051LC_Clc = Rom051Prioritet + Rom051LC_Cmd
+	Else
+ 	Rom051LC_Clc = 0
+	Endif
+	If Rom051LC_Cmd = 1 Then
+		Rom051LH_Clc = Rom051Prioritet + Rom051LH_Cmd
+	Else
+	Rom051LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom052Prioritet > 0 And Rom052Prioritet < 5 Then
+	
+	If Rom052LC_Cmd = 1 Then
+		Rom052LC_Clc = Rom052Prioritet + Rom052LC_Cmd
+	Else
+ 	Rom052LC_Clc = 0
+	Endif
+	If Rom052LC_Cmd = 1 Then
+		Rom052LH_Clc = Rom052Prioritet + Rom052LH_Cmd
+	Else
+	Rom052LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom053Prioritet > 0 And Rom053Prioritet < 5 Then
+	
+	If Rom053LC_Cmd = 1 Then
+		Rom053LC_Clc = Rom053Prioritet + Rom053LC_Cmd
+	Else
+ 	Rom053LC_Clc = 0
+	Endif
+	If Rom053LC_Cmd = 1 Then
+		Rom053LH_Clc = Rom053Prioritet + Rom053LH_Cmd
+	Else
+	Rom053LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom054Prioritet > 0 And Rom054Prioritet < 5 Then
+	
+	If Rom054LC_Cmd = 1 Then
+		Rom054LC_Clc = Rom054Prioritet + Rom054LC_Cmd
+	Else
+ 	Rom054LC_Clc = 0
+	Endif
+	If Rom054LC_Cmd = 1 Then
+		Rom054LH_Clc = Rom054Prioritet + Rom054LH_Cmd
+	Else
+	Rom054LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom055Prioritet > 0 And Rom055Prioritet < 5 Then
+	
+	If Rom055LC_Cmd = 1 Then
+		Rom055LC_Clc = Rom055Prioritet + Rom055LC_Cmd
+	Else
+ 	Rom055LC_Clc = 0
+	Endif
+	If Rom055LC_Cmd = 1 Then
+		Rom055LH_Clc = Rom055Prioritet + Rom055LH_Cmd
+	Else
+	Rom055LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom056Prioritet > 0 And Rom056Prioritet < 5 Then
+	
+	If Rom056LC_Cmd = 1 Then
+		Rom056LC_Clc = Rom056Prioritet + Rom056LC_Cmd
+	Else
+ 	Rom056LC_Clc = 0
+	Endif
+	If Rom056LC_Cmd = 1 Then
+		Rom056LH_Clc = Rom056Prioritet + Rom056LH_Cmd
+	Else
+	Rom056LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom057Prioritet > 0 And Rom057Prioritet < 5 Then
+	
+	If Rom057LC_Cmd = 1 Then
+		Rom057LC_Clc = Rom057Prioritet + Rom057LC_Cmd
+	Else
+ 	Rom057LC_Clc = 0
+	Endif
+	If Rom057LC_Cmd = 1 Then
+		Rom057LH_Clc = Rom057Prioritet + Rom057LH_Cmd
+	Else
+	Rom057LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom058Prioritet > 0 And Rom058Prioritet < 5 Then
+	
+	If Rom058LC_Cmd = 1 Then
+		Rom058LC_Clc = Rom058Prioritet + Rom058LC_Cmd
+	Else
+ 	Rom058LC_Clc = 0
+	Endif
+	If Rom058LC_Cmd = 1 Then
+		Rom058LH_Clc = Rom058Prioritet + Rom058LH_Cmd
+	Else
+	Rom058LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom059Prioritet > 0 And Rom059Prioritet < 5 Then
+	
+	If Rom059LC_Cmd = 1 Then
+		Rom059LC_Clc = Rom059Prioritet + Rom059LC_Cmd
+	Else
+ 	Rom059LC_Clc = 0
+	Endif
+	If Rom059LC_Cmd = 1 Then
+		Rom059LH_Clc = Rom059Prioritet + Rom059LH_Cmd
+	Else
+	Rom059LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom061Prioritet > 0 And Rom061Prioritet < 5 Then
+	
+	If Rom061LC_Cmd = 1 Then
+		Rom061LC_Clc = Rom061Prioritet + Rom061LC_Cmd
+	Else
+ 	Rom061LC_Clc = 0
+	Endif
+	If Rom061LC_Cmd = 1 Then
+		Rom061LH_Clc = Rom061Prioritet + Rom061LH_Cmd
+	Else
+	Rom061LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom062Prioritet > 0 And Rom062Prioritet < 5 Then
+	
+	If Rom062LC_Cmd = 1 Then
+		Rom062LC_Clc = Rom062Prioritet + Rom062LC_Cmd
+	Else
+ 	Rom062LC_Clc = 0
+	Endif
+	If Rom062LC_Cmd = 1 Then
+		Rom062LH_Clc = Rom062Prioritet + Rom062LH_Cmd
+	Else
+	Rom062LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom063Prioritet > 0 And Rom063Prioritet < 5 Then
+	
+	If Rom063LC_Cmd = 1 Then
+		Rom063LC_Clc = Rom063Prioritet + Rom063LC_Cmd
+	Else
+ 	Rom063LC_Clc = 0
+	Endif
+	If Rom063LC_Cmd = 1 Then
+		Rom063LH_Clc = Rom063Prioritet + Rom063LH_Cmd
+	Else
+	Rom063LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom064Prioritet > 0 And Rom064Prioritet < 5 Then
+	
+	If Rom064LC_Cmd = 1 Then
+		Rom064LC_Clc = Rom064Prioritet + Rom064LC_Cmd
+	Else
+ 	Rom064LC_Clc = 0
+	Endif
+	If Rom064LC_Cmd = 1 Then
+		Rom064LH_Clc = Rom064Prioritet + Rom064LH_Cmd
+	Else
+	Rom064LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom065Prioritet > 0 And Rom065Prioritet < 5 Then
+	
+	If Rom065LC_Cmd = 1 Then
+		Rom065LC_Clc = Rom065Prioritet + Rom065LC_Cmd
+	Else
+ 	Rom065LC_Clc = 0
+	Endif
+	If Rom065LC_Cmd = 1 Then
+		Rom065LH_Clc = Rom065Prioritet + Rom065LH_Cmd
+	Else
+	Rom065LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom066Prioritet > 0 And Rom066Prioritet < 5 Then
+	
+	If Rom066LC_Cmd = 1 Then
+		Rom066LC_Clc = Rom066Prioritet + Rom066LC_Cmd
+	Else
+ 	Rom066LC_Clc = 0
+	Endif
+	If Rom066LC_Cmd = 1 Then
+		Rom066LH_Clc = Rom066Prioritet + Rom066LH_Cmd
+	Else
+	Rom066LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom067Prioritet > 0 And Rom067Prioritet < 5 Then
+	
+	If Rom067LC_Cmd = 1 Then
+		Rom067LC_Clc = Rom067Prioritet + Rom067LC_Cmd
+	Else
+ 	Rom067LC_Clc = 0
+	Endif
+	If Rom067LC_Cmd = 1 Then
+		Rom067LH_Clc = Rom067Prioritet + Rom067LH_Cmd
+	Else
+	Rom067LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom068Prioritet > 0 And Rom068Prioritet < 5 Then
+	
+	If Rom068LC_Cmd = 1 Then
+		Rom068LC_Clc = Rom068Prioritet + Rom068LC_Cmd
+	Else
+ 	Rom068LC_Clc = 0
+	Endif
+	If Rom068LC_Cmd = 1 Then
+		Rom068LH_Clc = Rom068Prioritet + Rom068LH_Cmd
+	Else
+	Rom068LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom069Prioritet > 0 And Rom069Prioritet < 5 Then
+	
+	If Rom069LC_Cmd = 1 Then
+		Rom069LC_Clc = Rom069Prioritet + Rom069LC_Cmd
+	Else
+ 	Rom069LC_Clc = 0
+	Endif
+	If Rom069LC_Cmd = 1 Then
+		Rom069LH_Clc = Rom069Prioritet + Rom069LH_Cmd
+	Else
+	Rom069LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom070Prioritet > 0 And Rom070Prioritet < 5 Then
+	
+	If Rom070LC_Cmd = 1 Then
+		Rom070LC_Clc = Rom070Prioritet + Rom070LC_Cmd
+	Else
+ 	Rom070LC_Clc = 0
+	Endif
+	If Rom070LC_Cmd = 1 Then
+		Rom070LH_Clc = Rom070Prioritet + Rom070LH_Cmd
+	Else
+	Rom070LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom072Prioritet > 0 And Rom072Prioritet < 5 Then
+	
+	If Rom072LC_Cmd = 1 Then
+		Rom072LC_Clc = Rom072Prioritet + Rom072LC_Cmd
+	Else
+ 	Rom072LC_Clc = 0
+	Endif
+	If Rom072LC_Cmd = 1 Then
+		Rom072LH_Clc = Rom072Prioritet + Rom072LH_Cmd
+	Else
+	Rom072LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom073Prioritet > 0 And Rom073Prioritet < 5 Then
+	
+	If Rom073LC_Cmd = 1 Then
+		Rom073LC_Clc = Rom073Prioritet + Rom073LC_Cmd
+	Else
+ 	Rom073LC_Clc = 0
+	Endif
+	If Rom073LC_Cmd = 1 Then
+		Rom073LH_Clc = Rom073Prioritet + Rom073LH_Cmd
+	Else
+	Rom073LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom074Prioritet > 0 And Rom074Prioritet < 5 Then
+	
+	If Rom074LC_Cmd = 1 Then
+		Rom074LC_Clc = Rom074Prioritet + Rom074LC_Cmd
+	Else
+ 	Rom074LC_Clc = 0
+	Endif
+	If Rom074LC_Cmd = 1 Then
+		Rom074LH_Clc = Rom074Prioritet + Rom074LH_Cmd
+	Else
+	Rom074LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom004Prioritet > 0 And Rom004Prioritet < 5 Then
+	
+	If Rom004LC_Cmd = 1 Then
+		Rom004LC_Clc = Rom004Prioritet + Rom004LC_Cmd
+	Else
+ 	Rom004LC_Clc = 0
+	Endif
+	If Rom004LC_Cmd = 1 Then
+		Rom004LH_Clc = Rom004Prioritet + Rom004LH_Cmd
+	Else
+	Rom004LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom077Prioritet > 0 And Rom077Prioritet < 5 Then
+	
+	If Rom077LC_Cmd = 1 Then
+		Rom077LC_Clc = Rom077Prioritet + Rom077LC_Cmd
+	Else
+ 	Rom077LC_Clc = 0
+	Endif
+	If Rom077LC_Cmd = 1 Then
+		Rom077LH_Clc = Rom077Prioritet + Rom077LH_Cmd
+	Else
+	Rom077LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom078Prioritet > 0 And Rom078Prioritet < 5 Then
+	
+	If Rom078LC_Cmd = 1 Then
+		Rom078LC_Clc = Rom078Prioritet + Rom078LC_Cmd
+	Else
+ 	Rom078LC_Clc = 0
+	Endif
+	If Rom078LC_Cmd = 1 Then
+		Rom078LH_Clc = Rom078Prioritet + Rom078LH_Cmd
+	Else
+	Rom078LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom079Prioritet > 0 And Rom079Prioritet < 5 Then
+	
+	If Rom079LC_Cmd = 1 Then
+		Rom079LC_Clc = Rom079Prioritet + Rom079LC_Cmd
+	Else
+ 	Rom079LC_Clc = 0
+	Endif
+	If Rom079LC_Cmd = 1 Then
+		Rom079LH_Clc = Rom079Prioritet + Rom079LH_Cmd
+	Else
+	Rom079LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom081Prioritet > 0 And Rom081Prioritet < 5 Then
+	
+	If Rom081LC_Cmd = 1 Then
+		Rom081LC_Clc = Rom081Prioritet + Rom081LC_Cmd
+	Else
+ 	Rom081LC_Clc = 0
+	Endif
+	If Rom081LC_Cmd = 1 Then
+		Rom081LH_Clc = Rom081Prioritet + Rom081LH_Cmd
+	Else
+	Rom081LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom082Prioritet > 0 And Rom082Prioritet < 5 Then
+	
+	If Rom082LC_Cmd = 1 Then
+		Rom082LC_Clc = Rom082Prioritet + Rom082LC_Cmd
+	Else
+ 	Rom082LC_Clc = 0
+	Endif
+	If Rom082LC_Cmd = 1 Then
+		Rom082LH_Clc = Rom082Prioritet + Rom082LH_Cmd
+	Else
+	Rom082LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom083Prioritet > 0 And Rom083Prioritet < 5 Then
+	
+	If Rom083LC_Cmd = 1 Then
+		Rom083LC_Clc = Rom083Prioritet + Rom083LC_Cmd
+	Else
+ 	Rom083LC_Clc = 0
+	Endif
+	If Rom083LC_Cmd = 1 Then
+		Rom083LH_Clc = Rom083Prioritet + Rom083LH_Cmd
+	Else
+	Rom083LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom086Prioritet > 0 And Rom086Prioritet < 5 Then
+	
+	If Rom086LC_Cmd = 1 Then
+		Rom086LC_Clc = Rom086Prioritet + Rom086LC_Cmd
+	Else
+ 	Rom086LC_Clc = 0
+	Endif
+	If Rom086LC_Cmd = 1 Then
+		Rom086LH_Clc = Rom086Prioritet + Rom086LH_Cmd
+	Else
+	Rom086LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom087Prioritet > 0 And Rom087Prioritet < 5 Then
+	
+	If Rom087LC_Cmd = 1 Then
+		Rom087LC_Clc = Rom087Prioritet + Rom087LC_Cmd
+	Else
+ 	Rom087LC_Clc = 0
+	Endif
+	If Rom087LC_Cmd = 1 Then
+		Rom087LH_Clc = Rom087Prioritet + Rom087LH_Cmd
+	Else
+	Rom087LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom088Prioritet > 0 And Rom088Prioritet < 5 Then
+	
+	If Rom088LC_Cmd = 1 Then
+		Rom088LC_Clc = Rom088Prioritet + Rom088LC_Cmd
+	Else
+ 	Rom088LC_Clc = 0
+	Endif
+	If Rom088LC_Cmd = 1 Then
+		Rom088LH_Clc = Rom088Prioritet + Rom088LH_Cmd
+	Else
+	Rom088LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom089Prioritet > 0 And Rom089Prioritet < 5 Then
+	
+	If Rom089LC_Cmd = 1 Then
+		Rom089LC_Clc = Rom089Prioritet + Rom089LC_Cmd
+	Else
+ 	Rom089LC_Clc = 0
+	Endif
+	If Rom089LC_Cmd = 1 Then
+		Rom089LH_Clc = Rom089Prioritet + Rom089LH_Cmd
+	Else
+	Rom089LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom090Prioritet > 0 And Rom090Prioritet < 5 Then
+	
+	If Rom090LC_Cmd = 1 Then
+		Rom090LC_Clc = Rom090Prioritet + Rom090LC_Cmd
+	Else
+ 	Rom090LC_Clc = 0
+	Endif
+	If Rom090LC_Cmd = 1 Then
+		Rom090LH_Clc = Rom090Prioritet + Rom090LH_Cmd
+	Else
+	Rom090LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom091Prioritet > 0 And Rom091Prioritet < 5 Then
+	
+	If Rom091LC_Cmd = 1 Then
+		Rom091LC_Clc = Rom091Prioritet + Rom091LC_Cmd
+	Else
+ 	Rom091LC_Clc = 0
+	Endif
+	If Rom091LC_Cmd = 1 Then
+		Rom091LH_Clc = Rom091Prioritet + Rom091LH_Cmd
+	Else
+	Rom091LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom092Prioritet > 0 And Rom092Prioritet < 5 Then
+	
+	If Rom092LC_Cmd = 1 Then
+		Rom092LC_Clc = Rom092Prioritet + Rom092LC_Cmd
+	Else
+ 	Rom092LC_Clc = 0
+	Endif
+	If Rom092LC_Cmd = 1 Then
+		Rom092LH_Clc = Rom092Prioritet + Rom092LH_Cmd
+	Else
+	Rom092LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom405Prioritet > 0 And Rom405Prioritet < 5 Then
+	
+	If Rom405LC_Cmd = 1 Then
+		Rom405LC_Clc = Rom405Prioritet + Rom405LC_Cmd
+	Else
+ 	Rom405LC_Clc = 0
+	Endif
+	If Rom405LC_Cmd = 1 Then
+		Rom405LH_Clc = Rom405Prioritet + Rom405LH_Cmd
+	Else
+	Rom405LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom406Prioritet > 0 And Rom406Prioritet < 5 Then
+	
+	If Rom406LC_Cmd = 1 Then
+		Rom406LC_Clc = Rom406Prioritet + Rom406LC_Cmd
+	Else
+ 	Rom406LC_Clc = 0
+	Endif
+	If Rom406LC_Cmd = 1 Then
+		Rom406LH_Clc = Rom406Prioritet + Rom406LH_Cmd
+	Else
+	Rom406LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom407Prioritet > 0 And Rom407Prioritet < 5 Then
+	
+	If Rom407LC_Cmd = 1 Then
+		Rom407LC_Clc = Rom407Prioritet + Rom407LC_Cmd
+	Else
+ 	Rom407LC_Clc = 0
+	Endif
+	If Rom407LC_Cmd = 1 Then
+		Rom407LH_Clc = Rom407Prioritet + Rom407LH_Cmd
+	Else
+	Rom407LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom411Prioritet > 0 And Rom411Prioritet < 5 Then
+	
+	If Rom411LC_Cmd = 1 Then
+		Rom411LC_Clc = Rom411Prioritet + Rom411LC_Cmd
+	Else
+ 	Rom411LC_Clc = 0
+	Endif
+	If Rom411LC_Cmd = 1 Then
+		Rom411LH_Clc = Rom411Prioritet + Rom411LH_Cmd
+	Else
+	Rom411LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom416Prioritet > 0 And Rom416Prioritet < 5 Then
+	
+	If Rom416LC_Cmd = 1 Then
+		Rom416LC_Clc = Rom416Prioritet + Rom416LC_Cmd
+	Else
+ 	Rom416LC_Clc = 0
+	Endif
+	If Rom416LC_Cmd = 1 Then
+		Rom416LH_Clc = Rom416Prioritet + Rom416LH_Cmd
+	Else
+	Rom416LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom417Prioritet > 0 And Rom417Prioritet < 5 Then
+	
+	If Rom417LC_Cmd = 1 Then
+		Rom417LC_Clc = Rom417Prioritet + Rom417LC_Cmd
+	Else
+ 	Rom417LC_Clc = 0
+	Endif
+	If Rom417LC_Cmd = 1 Then
+		Rom417LH_Clc = Rom417Prioritet + Rom417LH_Cmd
+	Else
+	Rom417LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom421Prioritet > 0 And Rom421Prioritet < 5 Then
+	
+	If Rom421LC_Cmd = 1 Then
+		Rom421LC_Clc = Rom421Prioritet + Rom421LC_Cmd
+	Else
+ 	Rom421LC_Clc = 0
+	Endif
+	If Rom421LC_Cmd = 1 Then
+		Rom421LH_Clc = Rom421Prioritet + Rom421LH_Cmd
+	Else
+	Rom421LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom423Prioritet > 0 And Rom423Prioritet < 5 Then
+	
+	If Rom423LC_Cmd = 1 Then
+		Rom423LC_Clc = Rom423Prioritet + Rom423LC_Cmd
+	Else
+ 	Rom423LC_Clc = 0
+	Endif
+	If Rom423LC_Cmd = 1 Then
+		Rom423LH_Clc = Rom423Prioritet + Rom423LH_Cmd
+	Else
+	Rom423LH_Clc = 0
+	Endif
+Endif
+
+
+if Rom434Prioritet > 0 And Rom434Prioritet < 5 Then
+	
+	If Rom434LC_Cmd = 1 Then
+		Rom434LC_Clc = Rom434Prioritet + Rom434LC_Cmd
+	Else
+ 	Rom434LC_Clc = 0
+	Endif
+	If Rom434LC_Cmd = 1 Then
+		Rom434LH_Clc = Rom434Prioritet + Rom434LH_Cmd
+	Else
+	Rom434LH_Clc = 0
+	Endif
+Endif
+
+
+'Samler alle signaler som spør om kjøling etter prioritets endringen
+
+KjolingSamlet = (Rom001LC_Clc + Rom002LC_Clc + Rom003LC_Clc + Rom004LC_Clc + Rom005LC_Clc + Rom006LC_Clc + Rom007LC_Clc + Rom008LC_Clc + Rom009LC_Clc + Rom012LC_Clc + Rom013LC_Clc + Rom014LC_Clc + Rom015LC_Clc + Rom017LC_Clc + Rom018LC_Clc + Rom019LC_Clc + Rom022LC_Clc + Rom023LC_Clc+ Rom024LC_Clc + Rom025LC_Clc + Rom026LC_Clc + Rom027LC_Clc + Rom028LC_Clc + Rom029LC_Clc + Rom030LC_Clc + Rom031LC_Clc + Rom032LC_Clc + Rom033LC_Clc + Rom035LC_Clc + Rom037LC_Clc + Rom038LC_Clc + Rom039LC_Clc + Rom040LC_Clc + Rom041LC_Clc + Rom042LC_Clc + Rom043LC_Clc + Rom044LC_Clc + Rom045LC_Clc + Rom047LC_Clc + Rom048LC_Clc + Rom049LC_Clc + Rom050LC_Clc + Rom051LC_Clc + Rom052LC_Clc + Rom053LC_Clc + Rom054LC_Clc + Rom055LC_Clc + Rom056LC_Clc + Rom057LC_Clc + Rom058LC_Clc + Rom059LC_Clc + Rom061LC_Clc + Rom062LC_Clc + Rom063LC_Clc + Rom064LC_Clc + Rom065LC_Clc + Rom066LC_Clc + Rom067LC_Clc + Rom068LC_Clc + Rom069LC_Clc + Rom070LC_Clc + Rom072LC_Clc + Rom073LC_Clc + Rom074LC_Clc + Rom076LC_Clc + Rom077LC_Clc + Rom078LC_Clc + Rom079LC_Clc + Rom081LC_Clc + Rom082LC_Clc + Rom083LC_Clc + Rom086LC_Clc + Rom087LC_Clc + Rom088LC_Clc + Rom089LC_Clc + Rom090LC_Clc + Rom091LC_Clc + Rom092LC_Clc + Rom405LC_Clc + Rom406LC_Clc + Rom407LC_Clc + Rom411LC_Clc + Rom416LC_Clc + Rom417LC_Clc + Rom421LC_Clc + Rom423LC_Clc + Rom434LC_Clc)
+
+'Samler alle Signaler som spørr om varming etter prioritets endringen
+
+VarmingSamlet = (Rom001LH_Clc + Rom002LH_Clc + Rom003LH_Clc + Rom004LH_Clc + Rom005LH_Clc + Rom006LH_Clc + Rom007LH_Clc + Rom008LH_Clc + Rom009LH_Clc + Rom012LH_Clc + Rom013LH_Clc + Rom014LH_Clc + Rom015LH_Clc + Rom017LH_Clc + Rom018LH_Clc + Rom019LH_Clc + Rom022LH_Clc + Rom023LH_Clc+ Rom024LH_Clc + Rom025LH_Clc + Rom026LH_Clc + Rom027LH_Clc + Rom028LH_Clc + Rom029LH_Clc + Rom030LH_Clc + Rom031LH_Clc + Rom032LH_Clc + Rom033LH_Clc + Rom035LH_Clc + Rom037LH_Clc + Rom038LH_Clc + Rom039LH_Clc + Rom040LH_Clc + Rom041LH_Clc + Rom042LH_Clc + Rom043LH_Clc + Rom044LH_Clc + Rom045LH_Clc + Rom047LH_Clc + Rom048LH_Clc + Rom049LH_Clc + Rom050LH_Clc + Rom051LH_Clc + Rom052LH_Clc + Rom053LH_Clc + Rom054LH_Clc + Rom055LH_Clc + Rom056LH_Clc + Rom057LH_Clc + Rom058LH_Clc + Rom059LH_Clc + Rom061LH_Clc + Rom062LH_Clc + Rom063LH_Clc + Rom064LH_Clc + Rom065LH_Clc + Rom066LH_Clc + Rom067LH_Clc + Rom068LH_Clc + Rom069LH_Clc + Rom070LH_Clc + Rom072LH_Clc + Rom073LH_Clc + Rom074LH_Clc + Rom076LH_Clc + Rom077LH_Clc + Rom078LH_Clc + Rom079LH_Clc + Rom081LH_Clc + Rom082LH_Clc + Rom083LH_Clc + Rom086LH_Clc + Rom087LH_Clc + Rom088LH_Clc + Rom089LH_Clc + Rom090LH_Clc + Rom091LH_Clc + Rom092LH_Clc + Rom405LH_Clc + Rom406LH_Clc + Rom407LH_Clc + Rom411LH_Clc + Rom416LH_Clc + Rom417LH_Clc + Rom421LH_Clc + Rom423LH_Clc + Rom434LH_Clc)
+
+
+
+
 
 If KjolingSamlet > VarmingSamlet Then
 	Set FlertallKjoling = True
@@ -326,24 +1639,4 @@ endif
 If VarmingSamlet >= KjolingSamlet Then
 	Set FlertallKjoling = False
 	Set FlertallVarming = True
-	SistAktivStatus = "Flertall ønsker varming"
 endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
