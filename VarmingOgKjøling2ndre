@@ -1,10 +1,9 @@
-
 '
 '
 ' Temperatur styring 2. etasje
 ' Mathias Hovelstuen Jansson (mathiashjan@gmail.com)
 ' 11.10.2024
-' 
+' +47 901 71 698
 ' Bravida.no
 '
 '--------------------------------------------------------------------------------------------------
@@ -314,6 +313,10 @@ LastRunDateTime = Date ' Indikasjon fra siste script cycle
 '--------------------------------------------------------------------------------------------------
 
 
+
+
+' For å regne ut hvor mye mer prioritet vært rom skal ha imot værandre så kan man øke RomXXXPrioritet med en verdi ifra 1-5
+' jeg satt maks som 5 slik at en verdi ikke kan bestemme styringen på hele etasjen når man er uforsiktig
 
 
 if Rom001Prioritet > 0 And Rom001Prioritet < 5 Then
